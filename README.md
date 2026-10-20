@@ -1,3 +1,5 @@
+[English](README.en.md) | **中文**
+
 # Shader 屏保合集
 
 把 8 个 Shadertoy 上的 shader 移植到 Metal，做成一个 macOS 屏保 **Shader Mix**：
