@@ -41,18 +41,41 @@
 - **Path to the colorful infinity**：`o/dot(o,o)` 改写为 `o*(1./dot(o,o))`，画面不变，快约 8 倍。
 - **Balatro**：使用游戏里的默认参数，外加一层 `mainImage` 包装。
 
-## 构建与安装
+## 安装
+
+**普通安装不需要 Xcode，也不需要任何开发环境。** 仓库里带了预编译的通用版（Apple Silicon + Intel，ad-hoc 签名）：
+`dist/ShaderMix.zip`，GitHub Release 里也有同一份。
 
 ```bash
-brew install glslang spirv-cross   # GLSL → SPIR-V → Metal 转换工具
-./shader-mix/saver/build.sh        # 构建并安装到 ~/Library/Screen Savers/ShaderMix.saver
+git clone https://github.com/jokerlee/shader-screensavers.git   # 私有仓库：需先用 jokerlee 账号登录（gh auth login）
+cd shader-screensavers
+./install.sh
 ```
 
-启用：打开 **系统设置 → 屏幕保护程序**，在「其他」里选 **Shader Mix**。如果列表里没有，重开一次系统设置。
+`install.sh` 依次完成以下步骤：
+
+1. 检查系统版本，要求 macOS 13 以上。
+2. 解压预编译版；如果仓库里没有 `dist/`，用 `gh release download` 下载最新 Release。
+3. 备份旧版到 `~/Library/Screen Savers/ShaderMix.saver.backup`，安装到 `~/Library/Screen Savers/`。
+4. 去掉隔离属性，重启屏保进程。
+5. 打开「系统设置 → 屏幕保护程序」，在「其他」里选 **Shader Mix** 即可。
+
+| 用法 | 说明 |
+|---|---|
+| `./install.sh` | 安装预编译版（默认） |
+| `./install.sh --build` | 从源码构建再安装，只需要命令行工具：`xcode-select --install` |
+| `./install.sh --no-open` | 装完不打开系统设置（可与 `--build` 一起用） |
+| `./install.sh --uninstall` | 把已安装的屏保移到废纸篓 |
+
+从源码构建的说明：
+
+- 不需要 Xcode，也不需要离线 Metal 编译器。shader 以 Metal 源码打包，屏保加载时由显卡驱动编译。
+- GLSL → Metal 的转换工具 glslang 和 spirv-cross 是可选的：安装了（`brew install glslang spirv-cross`）就重新转换，没装就用仓库里已转换好的 `shader-mix/saver/generated/`。
+- 刷新预编译包：`./shader-mix/saver/package.sh`，会生成 `dist/ShaderMix.zip`。
 
 ## 参数（`shader-mix/saver/configure.sh`）
 
-`./shader-mix/saver/configure.sh <参数> <值>` 会修改 `Info.plist` 里的默认值，然后重新构建、安装，并重启屏保进程。不带参数运行可以查看当前值和可选的 shader。
+`./shader-mix/saver/configure.sh <参数> <值>` 会修改 `Info.plist` 里的默认值，然后从源码重新构建、安装，并重启屏保进程（需要命令行工具）。不带参数运行可以查看当前值和可选的 shader。
 
 | 参数 | 默认 | 说明 |
 |---|---|---|
@@ -83,7 +106,10 @@ brew install glslang spirv-cross   # GLSL → SPIR-V → Metal 转换工具
 
 | 路径 | 内容 |
 |---|---|
-| `shader-mix/saver/` | 屏保源码：`ShaderMixView.swift`、`Info.plist`、`build.sh`、`configure.sh`、`README.md` |
+| `install.sh` | 一键安装、卸载 |
+| `dist/ShaderMix.zip` | 预编译的通用版屏保 |
+| `shader-mix/saver/` | 屏保源码：`ShaderMixView.swift`、`Info.plist`、`build.sh`、`package.sh`、`configure.sh`、`README.md` |
+| `shader-mix/saver/generated/` | 已转换好的 Metal shader；没有 glslang 和 spirv-cross 时使用 |
 | `shader-mix/saver/shaders/` | 各 shader 的 GLSL 源（`<key>.glsl`）、叠加用的代码摘录（`<key>.excerpt.glsl`）、`manifest.json`（标题、作者、许可） |
 | `shader-mix/saver/tools/` | `gen_metal.py`（构建时 GLSL→Metal）、`make_sources.py`（一次性从 Shadertoy JSON 生成源文件） |
 | `shader-mix/reference/` | 浏览器渲染的原作参照图，用于移植校验 |

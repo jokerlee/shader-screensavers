@@ -23,10 +23,10 @@ one's code, with title, author and license. Personal use only; every shader belo
 - `shaders/<key>.excerpt.glsl` — the lines shown on screen, verbatim from the original.
 - `shaders/manifest.json` — titles, credits, textures. `textures/` — Starship's iChannel0 image from Shadertoy.
 - `tools/make_sources.py` — one-off: wrote the `.glsl` files and manifest from `~/Screensavers/candidates/src`.
-- `tools/gen_metal.py` — GLSL → SPIR-V → Metal (glslang + SPIRV-Cross), run by `build.sh`.
+- `tools/gen_metal.py` — GLSL → SPIR-V → Metal (glslang + SPIRV-Cross), run by `build.sh`; `generated/` holds its output for builds without those tools.
 - `ShaderMixView.swift`, `Info.plist`, `build.sh`, `configure.sh`.
 
-Building needs `brew install glslang spirv-cross`.
+Building needs only the Command Line Tools (`xcode-select --install`). With `brew install glslang spirv-cross` the GLSL is re-translated on each build; without them the pre-translated `generated/*.metal` are used. `build.sh` makes a universal (arm64 + x86_64) bundle; `package.sh` zips it into `../../dist/ShaderMix.zip`.
 
 ## Parameters (`Info.plist` → `ShaderMixDefaults`)
 
