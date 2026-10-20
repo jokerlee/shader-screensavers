@@ -1,0 +1,76 @@
+[
+  {
+    "key": "flowingwires",
+    "title": "Flowing Wires",
+    "author": "kishimisu",
+    "license": "CC BY-NC-SA 4.0",
+    "link": "shadertoy.com/view/DsBczR",
+    "enabledByDefault": true,
+    "channels": {}
+  },
+  {
+    "key": "starship",
+    "title": "Starship",
+    "author": "Xor",
+    "license": "CC BY-NC-SA 3.0",
+    "link": "shadertoy.com/view/l3cfW4",
+    "enabledByDefault": true,
+    "channels": {
+      "0": "starship_iChannel0.jpg"
+    }
+  },
+  {
+    "key": "fractalpyramid",
+    "title": "Fractal Pyramid",
+    "author": "bradjamesgrant",
+    "license": "CC BY-NC-SA 3.0",
+    "link": "shadertoy.com/view/tsXBzS",
+    "enabledByDefault": true,
+    "channels": {}
+  },
+  {
+    "key": "simplicity",
+    "title": "Simplicity",
+    "author": "JoshP",
+    "license": "CC BY-NC-SA 3.0",
+    "link": "shadertoy.com/view/lslGWr",
+    "enabledByDefault": true,
+    "channels": {}
+  },
+  {
+    "key": "singularity",
+    "title": "Singularity",
+    "author": "Xor",
+    "license": "CC BY-NC-SA 3.0",
+    "link": "shadertoy.com/view/3csSWB",
+    "enabledByDefault": true,
+    "channels": {}
+  },
+  {
+    "key": "ether",
+    "title": "Ether",
+    "author": "nimitz",
+    "license": "CC BY-NC-SA 3.0",
+    "link": "shadertoy.com/view/MsjSW3",
+    "enabledByDefault": true,
+    "channels": {}
+  },
+  {
+    "key": "colorfulinfinity",
+    "title": "Path to the colorful infinity",
+    "author": "benoitM",
+    "license": "CC BY-NC-SA 3.0",
+    "link": "shadertoy.com/view/WtjyzR",
+    "enabledByDefault": false,
+    "channels": {}
+  },
+  {
+    "key": "balatroswirl",
+    "title": "Balatro background",
+    "author": "LocalThunk · port xxidbr9",
+    "license": "personal use only",
+    "link": "shadertoy.com/view/XXtBRr",
+    "enabledByDefault": false,
+    "channels": {}
+  }
+]

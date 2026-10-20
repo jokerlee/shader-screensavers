@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleDevelopmentRegion</key><string>en</string>
+  <key>CFBundleExecutable</key><string>ShaderMix</string>
+  <key>CFBundleIdentifier</key><string>local.forest.screensaver.shadermix</string>
+  <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+  <key>CFBundleName</key><string>Shader Mix</string>
+  <key>CFBundleDisplayName</key><string>Shader Mix</string>
+  <key>CFBundlePackageType</key><string>BNDL</string>
+  <key>CFBundleShortVersionString</key><string>1.0</string>
+  <key>CFBundleVersion</key><string>1</string>
+  <key>LSMinimumSystemVersion</key><string>13.0</string>
+  <key>NSPrincipalClass</key><string>ShaderMixView</string>
+  <key>NSHumanReadableCopyright</key><string>Shadertoy shaders by their authors (see README.md); each shown with its credit and license. Personal use only.</string>
+  <!-- Defaults; change with ./configure.sh, see README.md -->
+  <key>ShaderMixDefaults</key>
+  <dict>
+    <key>shaders</key><string>flowingwires,starship,fractalpyramid,simplicity,singularity,ether</string>
+    <key>segmentSeconds</key><real>20</real>
+    <key>transitionSeconds</key><real>2</real>
+    <key>transitions</key><string>fade,dissolve,radial,clock</string>
+    <key>startTimeJitter</key><real>30</real>
+    <key>framesPerSecond</key><integer>30</integer>
+    <key>renderScale</key><real>1.0</real>
+    <key>maxRenderPixels</key><integer>2073600</integer>
+    <key>showCode</key><true/>
+    <key>codeOpacity</key><real>0.9</real>
+    <key>codeHalo</key><real>0.85</real>
+    <key>codeScale</key><real>1.0</real>
+    <key>logStats</key><false/>
+  </dict>
+</dict>
+</plist>

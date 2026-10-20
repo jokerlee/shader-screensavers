@@ -1,0 +1,38 @@
+{
+ "ver": "0.1",
+ "info": {
+  "id": "4df3Rn",
+  "date": "1358124981",
+  "viewed": 39708,
+  "name": "Mandelbrot - smooth",
+  "username": "iq",
+  "description": "A zoom in the Mandelbrot set, that showcases the difference between the regular iteration count coloring and the smooth iteration count coloring. See here: [url]https://iquilezles.org/articles/msetsmooth/[/url]",
+  "likes": 148,
+  "published": 1,
+  "flags": 0,
+  "usePreview": 0,
+  "tags": [
+   "2d",
+   "fractal",
+   "mandelbrot"
+  ],
+  "hasliked": 0,
+  "parentid": "",
+  "parentname": ""
+ },
+ "renderpass": [
+  {
+   "inputs": [],
+   "outputs": [
+    {
+     "id": "4dfGRr",
+     "channel": 0
+    }
+   ],
+   "code": "// Created by inigo quilez - iq/2013\n// https://www.youtube.com/c/InigoQuilez\n// https://iquilezles.org\n\n// More information on the smooth iteration count here:\n// https://iquilezles.org/articles/msetsmooth\n\n// increase this if you have a very fast GPU\n#define AA 2\n\nfloat mandelbrot( in vec2 c )\n{\n    #if 1\n    // early exit opportunities\n    float c2 = dot(c, c);\n    // inside M1 - https://iquilezles.org/articles/mset1bulb\n    if( 256.0*c2*c2 - 96.0*c2 + 32.0*c.x - 3.0 < 0.0 ) return 0.0;\n    // inside M2 - https://iquilezles.org/articles/mset2bulb\n    if( 16.0*(c2+2.0*c.x+1.0) - 1.0 < 0.0 ) return 0.0;\n    #endif\n\n    // iterate and track orbit\n    const float B = 256.0;\n    float n = 0.0;\n    vec2 z  = vec2(0.0);\n    for( int i=0; i<512; i++ )\n    {\n        z = vec2( z.x*z.x-z.y*z.y, 2.0*z.x*z.y ) + c;\n        if( dot(z,z)>(B*B) ) break;\n        n += 1.0;\n    }\n\n    if( n>511.0 ) return 0.0;\n    \n    // smooth interation count:\n    // float sn = n - log(log(length(z))/log(B))/log(2.0);\n    // equivalent simplified smooth interation count:\n    float sn = n - log2(log2(dot(z,z))) + 4.0;\n\n    float al = smoothstep( -0.1, 0.0, sin(3.1415927*iTime ) );\n    return mix( n, sn, al );\n}\n\nvoid mainImage( out vec4 fragColor, in vec2 fragCoord )\n{\n    vec3 col = vec3(0.0);\n    \n    #if AA>1\n    for( int m=0; m<AA; m++ )\n    for( int n=0; n<AA; n++ )\n    {\n        vec2 p = (2.0*(fragCoord+vec2(float(m),float(n))/float(AA))-iResolution.xy)/iResolution.y;\n        float w = float(AA*m+n);\n        float time = iTime + 0.5*(1.0/24.0)*w/float(AA*AA);\n    #else    \n        vec2 p = (2.0*fragCoord-iResolution.xy)/iResolution.y;\n        float time = iTime;\n    #endif\n    \n        // animate (rotation and zoom)\n        float  ani = 0.62 + 0.38*cos(0.07*time);\n        float  zoo = pow(ani,8.0);\n        float  ang = 0.15*(1.0-ani)*time;\n        float   co = cos(ang);\n        float   si = sin(ang);\n        mat2x2 rot = mat2x2(co,si,-si,co);\n        vec2 c = vec2(-0.745,0.186) + zoo*rot*p;\n\n        // get the (smooth) iteration count\n        float sn = mandelbrot(c);\n\n        // colorize with a blue-yellow color palette\n        if( sn>0.0 )\n        {\n          float nor = 1.0+log2(1.0/zoo);\n          // https://iquilezles.org/articles/palettes/\n          col += 0.5+0.5*cos(0.2*sn/nor+vec3(2.7,3.2,3.7));\n        }\n        \n    #if AA>1\n    }\n    col /= float(AA*AA);\n    #endif\n\n    fragColor = vec4( col, 1.0 );\n}",
+   "name": "Image",
+   "description": "",
+   "type": "image"
+  }
+ ]
+}

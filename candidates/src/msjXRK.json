@@ -1,0 +1,31 @@
+{
+ "ver": "0.1",
+ "info": {
+  "id": "msjXRK",
+  "date": "1670559044",
+  "viewed": 7160,
+  "name": "Cosmic [256 Chars]",
+  "username": "Xor",
+  "description": "I love making these glowy shaders. This time I thought I'd try using discs instead.",
+  "likes": 241,
+  "published": 1,
+  "flags": 0,
+  "usePreview": 0,
+  "tags": []
+ },
+ "renderpass": [
+  {
+   "inputs": [],
+   "outputs": [
+    {
+     "id": "4dfGRr",
+     "channel": 0
+    }
+   ],
+   "code": "/*\n    \"Cosmic\" by @XorDev\n    \n    I love making these glowy shaders. This time I thought I'd try using discs instead.\n\n    Tweet: twitter.com/XorDev/status/1601060422819680256\n    Twigl: t.co/IhRk3HX4Kt\n    \n    <300 chars playlist: shadertoy.com/playlist/fXlGDN\n*/\nvoid mainImage(out vec4 O, vec2 I)\n{\n    //Clear fragcolor (hacky)\n    O *= 0.;\n    //Initialize resolution for scaling\n    vec2 r=iResolution.xy,\n    //Save centered pixel coordinates\n    p = (I-r*.6)*mat2(1,-1,2,2);\n    \n    //Initialize loop iterator and arc angle\n    for(float i=0.,a;\n        //Loop 300 times\n        i++<3e1;\n        //Add with ring attenuation\n        O += .2 / (abs(length(I=p/(r+r-p).y)*8e1-i)+4e1/r.y)*\n        //Limit to arcs\n        clamp(cos(a=atan(I.y,I.x)*ceil(i*.1)+iTime*sin(i*i)+i*i),.0,.6)*\n        //Give them color\n        (cos(a-i+vec4(0,1,2,0))+1.));\n        \n}\n\n\n\n\n\n\n\n///Original [258]\n\n/*\nvoid mainImage(out vec4 O, vec2 I)\n{\n    //Clear fragcolor (hacky)\n    O *= 0.;\n    //Initialize resolution for scaling\n    vec2 r=iResolution.xy,\n    //Save centered pixel coordinates\n    p = I-r*.6;\n    \n    //Initialize loop iterator and arc angle\n    for(float i=0.,a;\n        //Loop 300 times\n        i++<3e1;\n        //Add with ring attenuation\n        O += 5e-3 / (abs(length(I=p*mat2(1,-1,2,2)/(r.y-p-p.yx))-i/4e1)+1./r.y)*\n        //Limit to arcs\n        clamp(cos(a=atan(I.y,I.x)*ceil(i*.1)+iTime*sin(i*i)+i*i),.0,.6)*\n        //Give them color\n        (cos(a-i+vec4(0,1,2,0))+1.) );\n        \n}\n*/",
+   "name": "Image",
+   "description": "",
+   "type": "image"
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "ver": "0.1",
+ "info": {
+  "id": "WcKXDV",
+  "date": "1750701259",
+  "viewed": 10801,
+  "name": "Accretion [312]",
+  "username": "Xor",
+  "description": "Ported from [url=https://x.com/XorDev/status/1936884244128661986]twigl[/url]\n",
+  "likes": 254,
+  "published": 1,
+  "flags": 0,
+  "usePreview": 0,
+  "tags": []
+ },
+ "renderpass": [
+  {
+   "inputs": [],
+   "outputs": [
+    {
+     "id": "4dfGRr",
+     "channel": 0
+    }
+   ],
+   "code": "/*\n    \"Accretion\" by @XorDev\n    \n    I discovered an interesting refraction effect\n    by adding the raymarch iterator to the turbulence!\n    https://x.com/XorDev/status/1936884244128661986\n*/\n\nvoid mainImage(out vec4 O, vec2 I)\n{\n    //Raymarch depth\n    float z,\n    //Step distance\n    d,\n    //Raymarch iterator\n    i;\n    //Clear fragColor and raymarch 20 steps\n    for(O*=i; i++<2e1; )\n    {\n        //Sample point (from ray direction)\n        vec3 p = z*normalize(vec3(I+I,0)-iResolution.xyx)+.1;\n        \n        //Polar coordinates and additional transformations\n        p = vec3(atan(p.y/.2,p.x)*2., p.z/3., length(p.xy)-5.-z*.2);\n        \n        //Apply turbulence and refraction effect\n        for(d=0.; d++<7.;)\n            p += sin(p.yzx*d+iTime+.3*i)/d;\n            \n        //Distance to cylinder and waves with refraction\n        z += d = length(vec4(.4*cos(p)-.4, p.z));\n        \n        //Coloring and brightness\n        O += (1.+cos(p.x+i*.4+z+vec4(6,1,2,0)))/d;\n    }\n    //Tanh tonemap\n    O = tanh(O*O/4e2);\n}",
+   "name": "Image",
+   "description": "",
+   "type": "image"
+  }
+ ]
+}

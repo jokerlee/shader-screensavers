@@ -1,0 +1,15 @@
+# Only Shader Mix, the shared overlay code and the candidate sources are versioned here;
+# the standalone colorful-infinity / balatro-swirl projects stay local.
+/*
+!/.gitignore
+!/README.md
+!/shader-mix/
+!/common/
+!/candidates/
+!/docs/
+
+# build output and large regenerable images
+build/
+*.saver
+candidates/thumbs/
+.DS_Store
