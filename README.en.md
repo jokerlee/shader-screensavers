@@ -37,6 +37,10 @@ These animations were rendered offline with the screen saver's own transition sh
 </tr>
 </table>
 
+## Omarchy
+
+`omarchy/` holds a port of Shader Mix to Omarchy (Arch + Hyprland): the same shaders, transitions and code overlay, replacing Omarchy's own screensaver. Install with `cd omarchy && ./install.sh`; see [omarchy/README.md](omarchy/README.md) (Chinese).
+
 ## Install
 
 **A normal install needs neither Xcode nor any other developer tools.** A prebuilt universal bundle

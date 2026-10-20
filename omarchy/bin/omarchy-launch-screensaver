@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# ShaderMix override of Omarchy's omarchy-launch-screensaver: same contract
+# (skip if running, honor the screensaver-off toggle unless "force"), but opens
+# a fullscreen ShaderMix window on every monitor instead of the terminal effect.
+# The windows use the org.omarchy.screensaver class, so Omarchy's window rules
+# and idle/lock tracking treat them exactly like the stock screensaver.
+
+SHADERMIX=${SHADERMIX:-$HOME/.local/bin/shadermix}
+
+if [[ ! -x $SHADERMIX ]]; then
+  exec /usr/bin/omarchy-launch-screensaver "$@"
+fi
+
+pgrep -f '[o]rg.omarchy.screensaver' >/dev/null && exit 0
+
+if omarchy-toggle-enabled screensaver-off && [[ $1 != "force" ]]; then
+  exit 1
+fi
+
+focused=$(omarchy-hyprland-monitor-focused)
+
+hypr_focus_monitor() {
+  hyprctl dispatch "hl.dsp.focus({ monitor = \"$1\" })" >/dev/null 2>&1 || hyprctl dispatch focusmonitor "$1" >/dev/null
+}
+
+hypr_exec() {
+  local command
+  printf -v command '%q ' "$@"
+  hyprctl dispatch "hl.dsp.exec_cmd([[$command]])" >/dev/null 2>&1 || hyprctl dispatch exec -- bash -lc "$command" >/dev/null
+}
+
+SOCKET="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+exec {events}< <(socat -U - "UNIX-CONNECT:$SOCKET")
+
+# A new window maps on whichever monitor is focused, so wait for each one to
+# open before moving focus to the next monitor.
+wait_for_screensaver_window() {
+  local line deadline=$((SECONDS + 5))
+  while ((SECONDS < deadline)) && IFS= read -r -t $((deadline - SECONDS)) -u "$events" line; do
+    [[ $line == openwindow\>\>*,org.omarchy.screensaver,* ]] && return 0
+  done
+}
+
+for m in $(hyprctl monitors -j | jq -r '.[] | .name'); do
+  hypr_focus_monitor "$m"
+  # each monitor gets its own random playlist, as on macOS
+  hypr_exec "$SHADERMIX" --class org.omarchy.screensaver
+  wait_for_screensaver_window
+done
+
+hypr_focus_monitor "$focused"

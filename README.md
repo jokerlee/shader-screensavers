@@ -35,6 +35,10 @@
 </tr>
 </table>
 
+## Omarchy 版
+
+`omarchy/` 下是同一个 Shader Mix 在 Omarchy（Arch + Hyprland）上的移植：相同的 shader、转场和代码叠加，替换 Omarchy 自带的屏保。安装：`cd omarchy && ./install.sh`，详见 [omarchy/README.md](omarchy/README.md)。
+
 ## 安装
 
 **普通安装不需要 Xcode，也不需要任何开发环境。** 预编译的通用版（Apple Silicon + Intel，ad-hoc 签名）发布在

@@ -9,6 +9,7 @@
 !/common/
 !/candidates/
 !/docs/
+!/omarchy/
 
 # build output and large regenerable images
 build/
