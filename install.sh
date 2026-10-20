@@ -1,6 +1,8 @@
 #!/bin/bash
 # One-step install of the Shader Mix screen saver. No Xcode needed for the default install.
-#   ./install.sh               install the prebuilt universal bundle, then open Screen Saver settings
+#   ./install.sh               download the latest release (prebuilt universal bundle) and install it,
+#                              then open Screen Saver settings; needs gh logged in with access
+#   ./install.sh --zip <path>  install a ShaderMix.zip you already have (e.g. from package.sh)
 #   ./install.sh --build       build from source instead (needs only: xcode-select --install)
 #   ./install.sh --no-open     do not open System Settings afterwards (combinable with --build)
 #   ./install.sh --uninstall   move the installed screen saver to the Trash
@@ -10,14 +12,17 @@ SAVERS="$HOME/Library/Screen Savers"
 DEST="$SAVERS/ShaderMix.saver"
 REPO="jokerlee/shader-screensavers"
 BUILD=0
+ZIP=""
 OPEN_SETTINGS=1
 
 fail() { echo "error: $*" >&2; exit 1; }
 
-for arg in "$@"; do
+while [ $# -gt 0 ]; do
+  arg="$1"; shift
   case "$arg" in
     --build) BUILD=1 ;;
     --no-open) OPEN_SETTINGS=0 ;;
+    --zip) [ $# -gt 0 ] || fail "--zip needs a path"; ZIP="$1"; shift ;;
     --uninstall)
       if [ -d "$DEST" ]; then
         mv "$DEST" "$HOME/.Trash/ShaderMix-$(date +%Y%m%d-%H%M%S).saver"
@@ -27,7 +32,7 @@ for arg in "$@"; do
         echo "Shader Mix is not installed."
       fi
       exit 0 ;;
-    *) fail "unknown option $arg (use --build, --no-open or --uninstall)" ;;
+    *) fail "unknown option $arg (use --zip <path>, --build, --no-open or --uninstall)" ;;
   esac
 done
 
@@ -52,15 +57,18 @@ if [ "$BUILD" = 1 ]; then
   backup_existing
   "$ROOT/shader-mix/saver/build.sh"
 else
-  ZIP="$ROOT/dist/ShaderMix.zip"
   TMP="$(mktemp -d)"
   trap 'rm -rf "$TMP"' EXIT
-  if [ ! -f "$ZIP" ]; then
-    command -v gh >/dev/null || fail "dist/ShaderMix.zip is missing and the GitHub CLI is not installed; use --build."
+  if [ -z "$ZIP" ]; then
+    command -v gh >/dev/null || fail "the GitHub CLI (gh) is needed to download the release: brew install gh
+  (or install from a zip with --zip <path>, or build from source with --build)"
     echo "Downloading the latest release from $REPO ..."
-    gh release download -R "$REPO" -p ShaderMix.zip -D "$TMP" || fail "download failed (is gh logged in with access to $REPO?)"
+    gh release download -R "$REPO" -p ShaderMix.zip -D "$TMP" || fail "could not download the release.
+  $REPO is private: log in with an account that can see it (gh auth login / gh auth switch),
+  or install from a zip with --zip <path>, or build from source with --build."
     ZIP="$TMP/ShaderMix.zip"
   fi
+  [ -f "$ZIP" ] || fail "$ZIP not found"
   ditto -x -k "$ZIP" "$TMP/unpacked"
   [ -d "$TMP/unpacked/ShaderMix.saver" ] || fail "ShaderMix.saver not found in $ZIP"
   backup_existing

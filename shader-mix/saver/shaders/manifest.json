@@ -61,7 +61,7 @@
     "author": "benoitM",
     "license": "CC BY-NC-SA 3.0",
     "link": "shadertoy.com/view/WtjyzR",
-    "enabledByDefault": false,
+    "enabledByDefault": true,
     "channels": {}
   },
   {
@@ -70,7 +70,7 @@
     "author": "LocalThunk · port xxidbr9",
     "license": "personal use only",
     "link": "shadertoy.com/view/XXtBRr",
-    "enabledByDefault": false,
+    "enabledByDefault": true,
     "channels": {}
   }
 ]

@@ -9,15 +9,15 @@
   <key>CFBundleName</key><string>Shader Mix</string>
   <key>CFBundleDisplayName</key><string>Shader Mix</string>
   <key>CFBundlePackageType</key><string>BNDL</string>
-  <key>CFBundleShortVersionString</key><string>1.0</string>
-  <key>CFBundleVersion</key><string>1</string>
+  <key>CFBundleShortVersionString</key><string>1.1</string>
+  <key>CFBundleVersion</key><string>2</string>
   <key>LSMinimumSystemVersion</key><string>13.0</string>
   <key>NSPrincipalClass</key><string>ShaderMixView</string>
   <key>NSHumanReadableCopyright</key><string>Shadertoy shaders by their authors (see README.md); each shown with its credit and license. Personal use only.</string>
   <!-- Defaults; change with ./configure.sh, see README.md -->
   <key>ShaderMixDefaults</key>
   <dict>
-    <key>shaders</key><string>flowingwires,starship,fractalpyramid,simplicity,singularity,ether</string>
+    <key>shaders</key><string>flowingwires,starship,fractalpyramid,simplicity,singularity,ether,colorfulinfinity,balatroswirl</string>
     <key>segmentSeconds</key><real>20</real>
     <key>transitionSeconds</key><real>2</real>
     <key>transitions</key><string>fade,dissolve,radial,clock</string>

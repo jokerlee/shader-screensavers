@@ -65,7 +65,7 @@ private struct Settings {
         }
         if transitions.isEmpty { transitions = [0] }
         return Settings(
-            shaders: list("shaders", "flowingwires,starship,fractalpyramid,simplicity,singularity,ether"),
+            shaders: list("shaders", "flowingwires,starship,fractalpyramid,simplicity,singularity,ether,colorfulinfinity,balatroswirl"),
             segmentSeconds: max(num("segmentSeconds", 20), 3),
             transitionSeconds: min(max(num("transitionSeconds", 2), 0.1), 20),
             transitions: transitions,
@@ -221,7 +221,8 @@ private final class Catalogue {
     }
 }
 
-private let compositeSource = """
+// also used by tools/transition_demo
+let compositeSource = """
 #include <metal_stdlib>
 using namespace metal;
 

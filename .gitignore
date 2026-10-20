@@ -4,7 +4,6 @@
 !/.gitignore
 !/README.md
 !/install.sh
-!/dist/
 !/shader-mix/
 !/common/
 !/candidates/

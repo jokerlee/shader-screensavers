@@ -11,8 +11,8 @@ one's code, with title, author and license. Personal use only; every shader belo
 | `simplicity` | [Simplicity](https://www.shadertoy.com/view/lslGWr) | JoshP | CC BY-NC-SA 3.0 (Shadertoy default) | on |
 | `singularity` | [Singularity](https://www.shadertoy.com/view/3csSWB) | Xor | CC BY-NC-SA 3.0 (Shadertoy default) | on |
 | `ether` | [Ether](https://www.shadertoy.com/view/MsjSW3) | nimitz | CC BY-NC-SA 3.0 | on |
-| `colorfulinfinity` | [Path to the colorful infinity](https://www.shadertoy.com/view/WtjyzR) | benoitM | CC BY-NC-SA 3.0 | off |
-| `balatroswirl` | Balatro background ([port](https://www.shadertoy.com/view/XXtBRr)) | LocalThunk, port xxidbr9 | personal use only | off |
+| `colorfulinfinity` | [Path to the colorful infinity](https://www.shadertoy.com/view/WtjyzR) | benoitM | CC BY-NC-SA 3.0 | on |
+| `balatroswirl` | Balatro background ([port](https://www.shadertoy.com/view/XXtBRr)) | LocalThunk, port xxidbr9 | personal use only | on |
 
 ## Files
 
@@ -22,17 +22,18 @@ one's code, with title, author and license. Personal use only; every shader belo
   `balatroswirl` (the game's parameters plus a `mainImage` wrapper).
 - `shaders/<key>.excerpt.glsl` — the lines shown on screen, verbatim from the original.
 - `shaders/manifest.json` — titles, credits, textures. `textures/` — Starship's iChannel0 image from Shadertoy.
-- `tools/make_sources.py` — one-off: wrote the `.glsl` files and manifest from `~/Screensavers/candidates/src`.
+- `tools/make_sources.py` — one-off: wrote the `.glsl` files and manifest from `candidates/src`.
+- `tools/transition_demo/` — renders a transition offline with the real composite shader (the README animations).
 - `tools/gen_metal.py` — GLSL → SPIR-V → Metal (glslang + SPIRV-Cross), run by `build.sh`; `generated/` holds its output for builds without those tools.
 - `ShaderMixView.swift`, `Info.plist`, `build.sh`, `configure.sh`.
 
-Building needs only the Command Line Tools (`xcode-select --install`). With `brew install glslang spirv-cross` the GLSL is re-translated on each build; without them the pre-translated `generated/*.metal` are used. `build.sh` makes a universal (arm64 + x86_64) bundle; `package.sh` zips it into `../../dist/ShaderMix.zip`.
+Building needs only the Command Line Tools (`xcode-select --install`). With `brew install glslang spirv-cross` the GLSL is re-translated on each build; without them the pre-translated `generated/*.metal` are used. `build.sh` makes a universal (arm64 + x86_64) bundle; `package.sh` zips it into `../../dist/ShaderMix.zip` (not versioned; attach it to a GitHub release).
 
 ## Parameters (`Info.plist` → `ShaderMixDefaults`)
 
 | key | default | meaning |
 |---|---|---|
-| `shaders` | the six above marked "on" | comma-separated keys to play |
+| `shaders` | all eight above | comma-separated keys to play |
 | `segmentSeconds` | 20 | how long each shader plays |
 | `transitionSeconds` | 2 | transition length; the code text fades out in the first half and in during the second |
 | `transitions` | `fade,dissolve,radial,clock` | transitions to pick from at random |

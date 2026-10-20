@@ -21,8 +21,8 @@ SHADERS = [
     ('simplicity', 'lslGWr', 'Simplicity', 'JoshP', 'CC BY-NC-SA 3.0', True, {}),
     ('singularity', '3csSWB', 'Singularity', 'Xor', 'CC BY-NC-SA 3.0', True, {}),
     ('ether', 'MsjSW3', 'Ether', 'nimitz', 'CC BY-NC-SA 3.0', True, {}),
-    ('colorfulinfinity', 'WtjyzR', 'Path to the colorful infinity', 'benoitM', 'CC BY-NC-SA 3.0', False, {}),
-    ('balatroswirl', None, 'Balatro background', 'LocalThunk · port xxidbr9', 'personal use only', False, {}),
+    ('colorfulinfinity', 'WtjyzR', 'Path to the colorful infinity', 'benoitM', 'CC BY-NC-SA 3.0', True, {}),
+    ('balatroswirl', None, 'Balatro background', 'LocalThunk · port xxidbr9', 'personal use only', True, {}),
 ]
 
 
