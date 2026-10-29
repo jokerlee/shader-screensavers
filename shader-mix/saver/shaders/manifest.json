@@ -1,7 +1,7 @@
 [
   {
     "key": "flowingwires",
-    "title": "Flowing Wires",
+    "title": "Flowing Wires [471 chars]",
     "author": "kishimisu",
     "license": "CC BY-NC-SA 4.0",
     "link": "shadertoy.com/view/DsBczR",
@@ -10,7 +10,7 @@
   },
   {
     "key": "starship",
-    "title": "Starship",
+    "title": "Starship [320]",
     "author": "Xor",
     "license": "CC BY-NC-SA 3.0",
     "link": "shadertoy.com/view/l3cfW4",
@@ -21,7 +21,7 @@
   },
   {
     "key": "fractalpyramid",
-    "title": "Fractal Pyramid",
+    "title": "fractal pyramid",
     "author": "bradjamesgrant",
     "license": "CC BY-NC-SA 3.0",
     "link": "shadertoy.com/view/tsXBzS",
@@ -39,7 +39,7 @@
   },
   {
     "key": "singularity",
-    "title": "Singularity",
+    "title": "Singularity [381]",
     "author": "Xor",
     "license": "CC BY-NC-SA 3.0",
     "link": "shadertoy.com/view/3csSWB",
@@ -66,8 +66,8 @@
   },
   {
     "key": "balatroswirl",
-    "title": "Balatro background",
-    "author": "LocalThunk · port xxidbr9",
+    "title": "Balatro Background Shaders",
+    "author": "xxidbr9 · original LocalThunk",
     "license": "personal use only",
     "link": "shadertoy.com/view/XXtBRr",
     "enabledByDefault": true,

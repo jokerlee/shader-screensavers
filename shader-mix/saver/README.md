@@ -12,7 +12,7 @@ one's code, with title, author and license. Personal use only; every shader belo
 | `singularity` | [Singularity](https://www.shadertoy.com/view/3csSWB) | Xor | CC BY-NC-SA 3.0 (Shadertoy default) | on |
 | `ether` | [Ether](https://www.shadertoy.com/view/MsjSW3) | nimitz | CC BY-NC-SA 3.0 | on |
 | `colorfulinfinity` | [Path to the colorful infinity](https://www.shadertoy.com/view/WtjyzR) | benoitM | CC BY-NC-SA 3.0 | on |
-| `balatroswirl` | Balatro background ([port](https://www.shadertoy.com/view/XXtBRr)) | LocalThunk, port xxidbr9 | personal use only | on |
+| `balatroswirl` | [Balatro Background Shaders](https://www.shadertoy.com/view/XXtBRr) | xxidbr9, original LocalThunk | personal use only | on |
 | `spiraliris` | [Shader_240422-4](https://openprocessing.org/sketch/2247937) | SamuelYAN | CC BY-NC-SA | on |
 | `membrane` | [untitled 2026_0203_3](https://openprocessing.org/sketch/2862539) | SamuelYAN | CC BY-NC-SA | on |
 | `motes` | [2026_0131](https://openprocessing.org/sketch/2860882) | SamuelYAN | CC BY-NC-SA | on |
