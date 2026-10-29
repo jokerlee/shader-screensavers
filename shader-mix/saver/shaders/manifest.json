@@ -66,7 +66,7 @@
   },
   {
     "key": "balatroswirl",
-    "title": "Balatro Background Shaders",
+    "title": "Balatro Background",
     "author": "xxidbr9 · original LocalThunk",
     "license": "personal use only",
     "link": "shadertoy.com/view/XXtBRr",
@@ -111,8 +111,8 @@
   },
   {
     "key": "apollonian4d",
-    "title": "Yet Another 4D Apollonian",
-    "author": "mrange",
+    "title": "4D Apollonian",
+    "author": "mrange · Yet Another 4D Apollonian",
     "license": "CC0",
     "link": "shadertoy.com/view/N3VXz1",
     "enabledByDefault": true,

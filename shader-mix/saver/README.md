@@ -12,12 +12,12 @@ one's code, with title, author and license. Personal use only; every shader belo
 | `singularity` | [Singularity](https://www.shadertoy.com/view/3csSWB) | Xor | CC BY-NC-SA 3.0 (Shadertoy default) | on |
 | `ether` | [Ether](https://www.shadertoy.com/view/MsjSW3) | nimitz | CC BY-NC-SA 3.0 | on |
 | `colorfulinfinity` | [Path to the Colorful Infinity](https://www.shadertoy.com/view/WtjyzR) | benoitM | CC BY-NC-SA 3.0 | on |
-| `balatroswirl` | [Balatro Background Shaders](https://www.shadertoy.com/view/XXtBRr) | xxidbr9, original LocalThunk | personal use only | on |
+| `balatroswirl` | [Balatro Background](https://www.shadertoy.com/view/XXtBRr) | xxidbr9, original LocalThunk | personal use only | on |
 | `spiraliris` | [Liquid Iridescence](https://openprocessing.org/sketch/2247937) (original title: Shader_240422-4) | SamuelYAN | CC BY-NC-SA | on |
 | `membrane` | [Cell Membrane Light](https://openprocessing.org/sketch/2862539) (original title: untitled 2026_0203_3) | SamuelYAN | CC BY-NC-SA | on |
 | `motes` | [Sixteen Motes](https://openprocessing.org/sketch/2860882) (original title: 2026_0131) | SamuelYAN | CC BY-NC-SA | on |
 | `hiddenline` | [The Hidden Line](https://openprocessing.org/sketch/2851315) (original title: GENUARY 2026_0120) | SamuelYAN | CC BY-NC-SA | on |
-| `apollonian4d` | [Yet Another 4D Apollonian](https://www.shadertoy.com/view/N3VXz1) | mrange | CC0 | on |
+| `apollonian4d` | [4D Apollonian](https://www.shadertoy.com/view/N3VXz1) (original title: Yet Another 4D Apollonian) | mrange | CC0 | on |
 
 ## Files
 

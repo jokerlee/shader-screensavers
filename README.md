@@ -274,9 +274,9 @@ for(float i=0.; i<=1.; i+=1./NUM_LAYERS)
 }
 ```
 
-### Balatro Background Shaders
+### Balatro Background
 
-![Balatro Background Shaders](docs/screenshots/balatroswirl.jpg)
+![Balatro Background](docs/screenshots/balatroswirl.jpg)
 
 - 作者：LocalThunk（游戏原作），xxidbr9 移植
 - 原始链接：https://www.shadertoy.com/view/XXtBRr ・ https://github.com/xxidbr9/balatro-effect-recreate ・ https://www.playbalatro.com
@@ -398,10 +398,11 @@ for (int i = 0; i < NUM_LIGHTS; i++) {
 float vignette = smoothstep(1.25, 0.75, length(p));
 col -= vignette * 1.25;
 ```
-### Yet Another 4D Apollonian
+### 4D Apollonian
 
-![Yet Another 4D Apollonian](docs/screenshots/apollonian4d.jpg)
+![4D Apollonian](docs/screenshots/apollonian4d.jpg)
 
+- 原作名：Yet Another 4D Apollonian
 - 作者：mrange
 - 原始链接：https://www.shadertoy.com/view/N3VXz1
 - 许可：CC0

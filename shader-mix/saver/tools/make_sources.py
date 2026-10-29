@@ -16,8 +16,8 @@ OUT = os.path.join(os.path.dirname(__file__), '..', 'shaders')
 
 SHADERS = [
     # key, shadertoy id, title, author, license, enabled by default, textures. Titles are the original
-    # names without code-size suffixes, in title case; SamuelYAN's numbered titles get an English name
-    # and the original title goes in the author line.
+    # names without code-size suffixes, in title case; numbered or filler titles (SamuelYAN's,
+    # "Yet Another") get a plain name and the original title goes in the author line.
     ('flowingwires', 'DsBczR', 'Flowing Wires', 'kishimisu', 'CC BY-NC-SA 4.0', True, {}),
     ('starship', 'l3cfW4', 'Starship', 'Xor', 'CC BY-NC-SA 3.0', True, {'0': 'starship_iChannel0.jpg'}),
     ('fractalpyramid', 'tsXBzS', 'Fractal Pyramid', 'bradjamesgrant', 'CC BY-NC-SA 3.0', True, {}),
@@ -25,12 +25,12 @@ SHADERS = [
     ('singularity', '3csSWB', 'Singularity', 'Xor', 'CC BY-NC-SA 3.0', True, {}),
     ('ether', 'MsjSW3', 'Ether', 'nimitz', 'CC BY-NC-SA 3.0', True, {}),
     ('colorfulinfinity', 'WtjyzR', 'Path to the Colorful Infinity', 'benoitM', 'CC BY-NC-SA 3.0', True, {}),
-    ('balatroswirl', None, 'Balatro Background Shaders', 'xxidbr9 · original LocalThunk', 'personal use only', True, {}),
+    ('balatroswirl', None, 'Balatro Background', 'xxidbr9 · original LocalThunk', 'personal use only', True, {}),
     ('spiraliris', None, 'Liquid Iridescence', 'SamuelYAN · Shader_240422-4', 'CC BY-NC-SA', True, {}),
     ('membrane', None, 'Cell Membrane Light', 'SamuelYAN · untitled 2026_0203_3', 'CC BY-NC-SA', True, {}),
     ('motes', None, 'Sixteen Motes', 'SamuelYAN · 2026_0131', 'CC BY-NC-SA', True, {}),
     ('hiddenline', None, 'The Hidden Line', 'SamuelYAN · GENUARY 2026_0120', 'CC BY-NC-SA', True, {}),
-    ('apollonian4d', 'N3VXz1', 'Yet Another 4D Apollonian', 'mrange', 'CC0', True, {}),
+    ('apollonian4d', 'N3VXz1', '4D Apollonian', 'mrange · Yet Another 4D Apollonian', 'CC0', True, {}),
 ]
 
 # shaders that are not on Shadertoy (or whose Shadertoy page is a port)

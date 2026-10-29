@@ -277,9 +277,9 @@ for(float i=0.; i<=1.; i+=1./NUM_LAYERS)
 }
 ```
 
-### Balatro Background Shaders
+### Balatro Background
 
-![Balatro Background Shaders](docs/screenshots/balatroswirl.jpg)
+![Balatro Background](docs/screenshots/balatroswirl.jpg)
 
 - Author: LocalThunk (the game), ported by xxidbr9
 - Original: https://www.shadertoy.com/view/XXtBRr · https://github.com/xxidbr9/balatro-effect-recreate · https://www.playbalatro.com
@@ -401,10 +401,11 @@ for (int i = 0; i < NUM_LIGHTS; i++) {
 float vignette = smoothstep(1.25, 0.75, length(p));
 col -= vignette * 1.25;
 ```
-### Yet Another 4D Apollonian
+### 4D Apollonian
 
-![Yet Another 4D Apollonian](docs/screenshots/apollonian4d.jpg)
+![4D Apollonian](docs/screenshots/apollonian4d.jpg)
 
+- Original title: Yet Another 4D Apollonian
 - Author: mrange
 - Original: https://www.shadertoy.com/view/N3VXz1
 - Licence: CC0
