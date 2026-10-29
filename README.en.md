@@ -2,7 +2,7 @@
 
 # Shader screen savers
 
-Eight Shadertoy shaders ported to Metal and combined into one macOS screen saver, **Shader Mix**.
+Thirteen Shadertoy and OpenProcessing shaders ported to Metal and combined into one macOS screen saver, **Shader Mix**.
 It plays them in random order with transitions, and shows the current shader's title, author,
 licence and key lines of code in the bottom-left corner.
 
@@ -12,7 +12,7 @@ licence and key lines of code in the bottom-left corner.
 
 ## Features
 
-- **Random playlist**: all eight shaders are on by default, 20 seconds each, never the same one twice in a row; each display picks its own order.
+- **Random playlist**: all thirteen shaders are on by default, 20 seconds each, never the same one twice in a row; each display picks its own order.
 - **Four transitions** (about 2 seconds, picked at random): cross-fade, noise dissolve with a glowing seam, a circle opening from the centre, and a clock wipe.
 - **Code overlay**: a large title, a line with author / link / licence, and a verbatim excerpt of the shader's key lines (`// ...` marks omissions).
   - The text area is fixed to the bottom-left corner and sized for the longest excerpt at start-up, so the title and the first code line never move when shaders switch.
@@ -82,7 +82,7 @@ Building from source:
 
 | Key | Default | Meaning |
 |---|---|---|
-| `shaders` | all eight | shaders to play, comma-separated; keys are listed with each shader below |
+| `shaders` | all thirteen | shaders to play, comma-separated; keys are listed with each shader below |
 | `segmentSeconds` | 20 | how long each shader plays (seconds) |
 | `transitionSeconds` | 2 | transition length (seconds) |
 | `transitions` | `fade,dissolve,radial,clock` | transitions to pick from at random (all by default) |
@@ -301,6 +301,126 @@ for (int i=0; i < 5; i++) {
 float paint_res = min(2., max(0., length(uv)*(0.035)*contrast_mod));
 ```
 
+The last five are the originals behind MasterYeeeee's breakdown videos on Xiaohongshu. Four are SamuelYAN's p5.js fragment shaders on OpenProcessing, converted to Shadertoy's mainImage: coordinates follow p5.js at pixelDensity 2 (Retina); the sketches are composed for an 11:16 portrait canvas, so they are zoomed around the centre to fill a landscape screen (factor set by eye at 16:10, more on wider screens). Each was checked pixel by pixel against the original code rendered in a browser.
+
+### Shader_240422-4
+
+![Shader_240422-4](docs/screenshots/spiraliris.jpg)
+
+- Author: SamuelYAN (@samuelyan)
+- Original: https://openprocessing.org/sketch/2247937
+- Licence: CC BY-NC-SA
+- Settings key: `spiraliris`
+
+Liquid iridescence flung out of a logarithmic spiral: log-polar coordinates twisted and rotated into liquid-metal colour bands.
+
+```glsl
+vec2 uv = (gl_FragCoord.xy-1.0*u_resolution.xy)/u_resolution.y;
+float a = atan(uv.y, uv.x);
+float r = log(length(uv));
+a = 2. *a;
+// ...
+uv = rot(uv, u_time +  2. * a + 6.1415 * sin(3. * r + a - u_time));
+float s = arrow(uv);
+// ...
+col *= smoothstep(0.,0.1,2.25-length(uv));
+col = mix(col, vec3(1, .93, .92)*2., smoothstep(0., 3.5, -r));
+```
+### untitled 2026_0203_3
+
+![untitled 2026_0203_3](docs/screenshots/membrane.jpg)
+
+- Author: SamuelYAN (@samuelyan)
+- Original: https://openprocessing.org/sketch/2862539
+- Licence: CC BY-NC-SA
+- Settings key: `membrane`
+
+Light dancing inside a cell membrane: 64 spotlights turning in a warped space, held by a membrane mask that breathes with a "life" state.
+
+```glsl
+vec2 pw = warp(p);
+// ...
+float ang = u_time * 0.4 + hash(seed) * 6.28318;
+vec2 dir  = vec2(cos(ang), sin(ang));
+// ...
+col += lc * light * flicker * pulse;
+// ...
+float mask = smoothstep( 0.03, -0.03, blob(pw, 0.85, life) );
+col /= mask;
+col -= smoothstep(0.2, 0.6, length(pw)) * 0.8;
+```
+### 2026_0131
+
+![2026_0131](docs/screenshots/motes.jpg)
+
+- Author: SamuelYAN (@samuelyan)
+- Original: https://openprocessing.org/sketch/2860882
+- Licence: CC BY-NC-SA
+- Settings key: `motes`
+
+Sixteen motes attracting each other: cohesion, alignment and separation of 16 pseudo-boids form a field drawn as glowing, merging outlines. Its colour sibling GENUARY 2026_0131 (openprocessing.org/sketch/2860834) is not included.
+
+```glsl
+for(int i = 0; i < BOIDS; i++){
+    // ...
+    float w = exp(-d * 6.0);
+    cohesion += bp * w;
+    alignment += bv * w;
+    separation += normalize(p - bp) * w / (d + .75) * 3.;
+    // ...
+}
+vec2 v =
+      .2 * (cohesion - p)   // cohesion
+    + 1.6 * alignment       // alignment
+    + .4 * separation;     // separation
+```
+### GENUARY 2026_0120
+
+![GENUARY 2026_0120](docs/screenshots/hiddenline.jpg)
+
+- Author: SamuelYAN (@samuelyan)
+- Original: https://openprocessing.org/sketch/2851315
+- Licence: CC BY-NC-SA
+- Settings key: `hiddenline`
+
+The hidden line: 32 spotlights locked to the grid diagonal flicker and breathe under a vignette, forming a soft glowing sphere.
+
+```glsl
+for (int i = 0; i < NUM_LIGHTS; i++) {
+    // ...
+    vec2 lightPos = (vec2(gx, gy) + 0.5) / GRID;
+    lightPos = lightPos * 2.0 - 1.0;
+    // ...
+    float light = spotlight(p, lightPos, dir, coneAngle, softness);
+    // ...
+}
+float vignette = smoothstep(1.25, 0.75, length(p));
+col -= vignette * 1.25;
+```
+### Yet Another 4D Apollonian
+
+![Yet Another 4D Apollonian](docs/screenshots/apollonian4d.jpg)
+
+- Author: mrange
+- Original: https://www.shadertoy.com/view/N3VXz1
+- Licence: CC0
+- Settings key: `apollonian4d`
+
+The four-dimensional riddle: a 4D Apollonian fractal rotated in three planes and projected, ray-marched with accumulated glow.
+
+```glsl
+// ...
+    ; p=abs(p/s)
+    , d=min(length(p.xy)+3e-4,min(p.z,p.w)+3e-3)
+    , p=e*e+3.+3.*cos(13.*dot(o.xy,o.zw)+vec4(2,7,0,4))
+    , O+=p.w/(7.*e*e*e*d+d)*exp(-z*z*.5)*p
+    , z+=.6*d+1e-3
+    )
+    for(s=d=1.;++d<7.;s*=e)
+      p-=2.*round(p*.5)
+    , p*=e=2./dot(p,p)
+```
+
 ## Layout
 
 | Path | Contents |
@@ -312,18 +432,19 @@ float paint_res = min(2., max(0., length(uv)*(0.035)*contrast_mod));
 | `shader-mix/saver/tools/` | `gen_metal.py` (GLSL → Metal), `make_sources.py` (sources from the Shadertoy JSON), `transition_demo/` (renders the transition animations) |
 | `shader-mix/reference/` | the originals rendered in a browser, used to check the ports |
 | `common/CodeText.swift` | the code overlay: text mask layout and GPU shading |
-| `candidates/` | the original Shadertoy JSON of the 24 shaders considered, measured GPU cost, an overview image and the measuring tools |
+| `candidates/` | the original Shadertoy JSON of the 24 shaders considered, measured GPU cost, an overview image and the measuring tools; `candidates/xhs/` holds the Xiaohongshu-sourced candidates (OpenProcessing source, converted GLSL, browser reference renders) |
 | `docs/screenshots/` | screenshots and transition animations for the READMEs |
 
 ## Credits and licences
 
 Every shader belongs to its author; this repository is a port for personal study and use:
 
-- The works by kishimisu, Xor, bradjamesgrant, JoshP, nimitz and Benoit Marini come from Shadertoy.
+- The works by kishimisu, Xor, bradjamesgrant, JoshP, nimitz, Benoit Marini and mrange come from Shadertoy; SamuelYAN's come from OpenProcessing.
   - They are CC BY-NC-SA 3.0 or 4.0; where the author states nothing, Shadertoy's default CC BY-NC-SA 3.0 applies.
   - That means attribution, no commercial use, and derivatives under the same licence.
 - The Balatro background shader is by LocalThunk, from the game Balatro, ported by xxidbr9.
   - It has no open licence; it is here for personal use only and must not be published or distributed.
+- SamuelYAN's four OpenProcessing sketches are CC BY-NC-SA; mrange's Yet Another 4D Apollonian is CC0.
 - The noise texture used by Starship is one of Shadertoy's built-in textures.
 - Authors and licences of the other shaders in `candidates/src` are listed in `candidates/README.md`.
 - The ports, the screen saver framework and the tools are for personal use only.

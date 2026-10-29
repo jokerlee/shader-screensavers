@@ -16,3 +16,9 @@ build/
 *.saver
 candidates/thumbs/
 .DS_Store
+candidates/xhs/frames/
+candidates/xhs/multi/
+candidates/xhs/multi_sheet.jpg
+candidates/xhs/zoomtest/
+candidates/xhs/metal/
+candidates/xhs/src/op_user_*.json

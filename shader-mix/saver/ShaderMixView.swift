@@ -65,7 +65,7 @@ private struct Settings {
         }
         if transitions.isEmpty { transitions = [0] }
         return Settings(
-            shaders: list("shaders", "flowingwires,starship,fractalpyramid,simplicity,singularity,ether,colorfulinfinity,balatroswirl"),
+            shaders: list("shaders", "flowingwires,starship,fractalpyramid,simplicity,singularity,ether,colorfulinfinity,balatroswirl,spiraliris,membrane,motes,hiddenline,apollonian4d"),
             segmentSeconds: max(num("segmentSeconds", 20), 3),
             transitionSeconds: min(max(num("transitionSeconds", 2), 0.1), 20),
             transitions: transitions,

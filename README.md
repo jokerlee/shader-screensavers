@@ -2,7 +2,7 @@
 
 # Shader 屏保合集
 
-把 8 个 Shadertoy 上的 shader 移植到 Metal，做成一个 macOS 屏保 **Shader Mix**：
+把 13 个 Shadertoy / OpenProcessing 上的 shader 移植到 Metal，做成一个 macOS 屏保 **Shader Mix**：
 随机轮播、带转场，并在左下角显示当前 shader 的标题、作者、许可和核心代码。
 
 > **私有仓库，仅限个人使用。** 多数 shader 为 CC BY-NC-SA（禁止商用、需署名），
@@ -10,7 +10,7 @@
 
 ## 特性
 
-- **随机轮播**：默认启用全部 8 个 shader，每段 20 秒，不连续重复；多显示器各自独立随机。
+- **随机轮播**：默认启用全部 13 个 shader，每段 20 秒，不连续重复；多显示器各自独立随机。
 - **四种转场**（约 2 秒，随机选）：交叉淡化、噪声溶解（带发光接缝）、圆形从中心展开、时钟擦除。
 - **代码叠加**：大标题 + 作者/链接/许可一行 + 原作的核心代码摘录（原文，`// ...` 表示省略）。
   - 文字区域固定在左下角：启动时按最长的摘录量好高度，切换时标题和第一行代码都不跳动。
@@ -79,7 +79,7 @@ cd shader-screensavers
 
 | 参数 | 默认 | 说明 |
 |---|---|---|
-| `shaders` | 全部 8 个 | 启用哪些 shader，逗号分隔，配置名见下方各 shader |
+| `shaders` | 全部 13 个 | 启用哪些 shader，逗号分隔，配置名见下方各 shader |
 | `segmentSeconds` | 20 | 每个 shader 的播放时长（秒） |
 | `transitionSeconds` | 2 | 转场时长（秒） |
 | `transitions` | `fade,dissolve,radial,clock` | 从中随机选用的转场（默认全部） |
@@ -298,6 +298,126 @@ for (int i=0; i < 5; i++) {
 float paint_res = min(2., max(0., length(uv)*(0.035)*contrast_mod));
 ```
 
+后 5 个来自小红书博主 MasterYeeeee 的作品解析视频所引用的原作，其中 4 个是 OpenProcessing 上 SamuelYAN 的 p5.js 片元着色器，转成 Shadertoy 的 mainImage 形式：坐标按 p5.js 在 Retina 屏上的 pixelDensity 2 换算；原作为 11:16 竖屏构图，这里围绕中心放大铺满横屏（16:10 下的倍数手调，更宽的屏再按宽度放大），与浏览器 WebGL 渲染的原代码逐像素对比过。
+
+### Shader_240422-4
+
+![Shader_240422-4](docs/screenshots/spiraliris.jpg)
+
+- 作者：SamuelYAN（@samuelyan）
+- 原始链接：https://openprocessing.org/sketch/2247937
+- 许可：CC BY-NC-SA
+- 配置名：`spiraliris`
+
+在对数螺线里盛放的液态虹彩：极坐标取对数后旋转扭曲，从中心甩出液态金属般的虹彩。
+
+```glsl
+vec2 uv = (gl_FragCoord.xy-1.0*u_resolution.xy)/u_resolution.y;
+float a = atan(uv.y, uv.x);
+float r = log(length(uv));
+a = 2. *a;
+// ...
+uv = rot(uv, u_time +  2. * a + 6.1415 * sin(3. * r + a - u_time));
+float s = arrow(uv);
+// ...
+col *= smoothstep(0.,0.1,2.25-length(uv));
+col = mix(col, vec3(1, .93, .92)*2., smoothstep(0., 3.5, -r));
+```
+### untitled 2026_0203_3
+
+![untitled 2026_0203_3](docs/screenshots/membrane.jpg)
+
+- 作者：SamuelYAN（@samuelyan）
+- 原始链接：https://openprocessing.org/sketch/2862539
+- 许可：CC BY-NC-SA
+- 配置名：`membrane`
+
+光在细胞膜内起舞：64 盏聚光灯在扭曲的空间里转动，被一个随“生命状态”起伏的细胞膜遮罩收住。
+
+```glsl
+vec2 pw = warp(p);
+// ...
+float ang = u_time * 0.4 + hash(seed) * 6.28318;
+vec2 dir  = vec2(cos(ang), sin(ang));
+// ...
+col += lc * light * flicker * pulse;
+// ...
+float mask = smoothstep( 0.03, -0.03, blob(pw, 0.85, life) );
+col /= mask;
+col -= smoothstep(0.2, 0.6, length(pw)) * 0.8;
+```
+### 2026_0131
+
+![2026_0131](docs/screenshots/motes.jpg)
+
+- 作者：SamuelYAN（@samuelyan）
+- 原始链接：https://openprocessing.org/sketch/2860882
+- 许可：CC BY-NC-SA
+- 配置名：`motes`
+
+当十六颗微尘在代码里彼此吸引：16 个伪 boid 的聚合、对齐、分离三种力构成一个场，画出相互吸引融合的发光轮廓。同组还有彩色版 GENUARY 2026_0131（openprocessing.org/sketch/2860834），未加入。
+
+```glsl
+for(int i = 0; i < BOIDS; i++){
+    // ...
+    float w = exp(-d * 6.0);
+    cohesion += bp * w;
+    alignment += bv * w;
+    separation += normalize(p - bp) * w / (d + .75) * 3.;
+    // ...
+}
+vec2 v =
+      .2 * (cohesion - p)   // cohesion
+    + 1.6 * alignment       // alignment
+    + .4 * separation;     // separation
+```
+### GENUARY 2026_0120
+
+![GENUARY 2026_0120](docs/screenshots/hiddenline.jpg)
+
+- 作者：SamuelYAN（@samuelyan）
+- 原始链接：https://openprocessing.org/sketch/2851315
+- 许可：CC BY-NC-SA
+- 配置名：`hiddenline`
+
+隐秘的一线：32 盏锁定在网格对角线上的聚光灯闪烁、呼吸，叠加暗角，形成柔光球体。
+
+```glsl
+for (int i = 0; i < NUM_LIGHTS; i++) {
+    // ...
+    vec2 lightPos = (vec2(gx, gy) + 0.5) / GRID;
+    lightPos = lightPos * 2.0 - 1.0;
+    // ...
+    float light = spotlight(p, lightPos, dir, coneAngle, softness);
+    // ...
+}
+float vignette = smoothstep(1.25, 0.75, length(p));
+col -= vignette * 1.25;
+```
+### Yet Another 4D Apollonian
+
+![Yet Another 4D Apollonian](docs/screenshots/apollonian4d.jpg)
+
+- 作者：mrange
+- 原始链接：https://www.shadertoy.com/view/N3VXz1
+- 许可：CC0
+- 配置名：`apollonian4d`
+
+四维之谜：四维阿波罗尼分形，三个平面连续旋转后投影，光线步进累积发光，星云般绚丽。
+
+```glsl
+// ...
+    ; p=abs(p/s)
+    , d=min(length(p.xy)+3e-4,min(p.z,p.w)+3e-3)
+    , p=e*e+3.+3.*cos(13.*dot(o.xy,o.zw)+vec4(2,7,0,4))
+    , O+=p.w/(7.*e*e*e*d+d)*exp(-z*z*.5)*p
+    , z+=.6*d+1e-3
+    )
+    for(s=d=1.;++d<7.;s*=e)
+      p-=2.*round(p*.5)
+    , p*=e=2./dot(p,p)
+```
+
 ## 目录
 
 | 路径 | 内容 |
@@ -309,18 +429,19 @@ float paint_res = min(2., max(0., length(uv)*(0.035)*contrast_mod));
 | `shader-mix/saver/tools/` | `gen_metal.py`（GLSL→Metal）、`make_sources.py`（从 Shadertoy JSON 生成源文件）、`transition_demo/`（离线渲染转场动图） |
 | `shader-mix/reference/` | 浏览器渲染的原作参照图，用于移植校验 |
 | `common/CodeText.swift` | 代码叠加：文字遮罩排版与 GPU 着色 |
-| `candidates/` | 选型时拉取的 24 个 Shadertoy 原始 JSON、实测 GPU 耗时、总览图和测量工具 |
+| `candidates/` | 选型时拉取的 24 个 Shadertoy 原始 JSON、实测 GPU 耗时、总览图和测量工具；`candidates/xhs/` 是小红书来源的候选（OpenProcessing 源码、转换后的 GLSL、浏览器参照图） |
 | `docs/screenshots/` | 本文截图与转场动图 |
 
 ## 致谢与许可
 
 所有 shader 的版权归原作者所有，本仓库只是个人学习和自用的移植：
 
-- kishimisu、Xor、bradjamesgrant、JoshP、nimitz、Benoit Marini 的作品均来自 Shadertoy。
+- kishimisu、Xor、bradjamesgrant、JoshP、nimitz、Benoit Marini、mrange 的作品来自 Shadertoy，SamuelYAN 的作品来自 OpenProcessing。
   - 许可为 CC BY-NC-SA 3.0 或 4.0；作者未声明的，按 Shadertoy 默认的 CC BY-NC-SA 3.0。
   - 要求署名、禁止商用，衍生作品须使用相同许可。
 - Balatro 背景 shader 的原作者是 LocalThunk，出自游戏《Balatro》，由 xxidbr9 移植。
   - 没有任何开源授权，此处仅作个人使用，不得公开或分发。
+- SamuelYAN 的 4 个 OpenProcessing 作品为 CC BY-NC-SA；mrange 的 Yet Another 4D Apollonian 为 CC0。
 - Starship 使用的噪声贴图来自 Shadertoy 内置纹理。
 - `candidates/src` 中其他 shader 的作者与许可见 `candidates/README.md`。
 - 移植、屏保框架和工具代码仅供个人使用。

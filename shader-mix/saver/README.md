@@ -13,16 +13,23 @@ one's code, with title, author and license. Personal use only; every shader belo
 | `ether` | [Ether](https://www.shadertoy.com/view/MsjSW3) | nimitz | CC BY-NC-SA 3.0 | on |
 | `colorfulinfinity` | [Path to the colorful infinity](https://www.shadertoy.com/view/WtjyzR) | benoitM | CC BY-NC-SA 3.0 | on |
 | `balatroswirl` | Balatro background ([port](https://www.shadertoy.com/view/XXtBRr)) | LocalThunk, port xxidbr9 | personal use only | on |
+| `spiraliris` | [Shader_240422-4](https://openprocessing.org/sketch/2247937) | SamuelYAN | CC BY-NC-SA | on |
+| `membrane` | [untitled 2026_0203_3](https://openprocessing.org/sketch/2862539) | SamuelYAN | CC BY-NC-SA | on |
+| `motes` | [2026_0131](https://openprocessing.org/sketch/2860882) | SamuelYAN | CC BY-NC-SA | on |
+| `hiddenline` | [GENUARY 2026_0120](https://openprocessing.org/sketch/2851315) | SamuelYAN | CC BY-NC-SA | on |
+| `apollonian4d` | [Yet Another 4D Apollonian](https://www.shadertoy.com/view/N3VXz1) | mrange | CC0 | on |
 
 ## Files
 
 - `shaders/<key>.glsl` — Shadertoy `mainImage` source that gets compiled. Verbatim originals, except
   `flowingwires` (macro/comma-expression code rewritten as a function for SPIR-V, same math),
   `colorfulinfinity` (`o/dot(o,o)` → `o*(1./dot(o,o))`, same output, ~8x faster) and
-  `balatroswirl` (the game's parameters plus a `mainImage` wrapper).
+  `balatroswirl` (the game's parameters plus a `mainImage` wrapper), and the four OpenProcessing
+  p5.js shaders (`spiraliris`, `membrane`, `motes`, `hiddenline`), wrapped as `mainImage` with p5's
+  pixelDensity-2 coordinates and a cover zoom so their portrait compositions fill a landscape screen.
 - `shaders/<key>.excerpt.glsl` — the lines shown on screen, verbatim from the original.
 - `shaders/manifest.json` — titles, credits, textures. `textures/` — Starship's iChannel0 image from Shadertoy.
-- `tools/make_sources.py` — one-off: wrote the `.glsl` files and manifest from `candidates/src`.
+- `tools/make_sources.py` — one-off: wrote the `.glsl` files and manifest from `candidates/src` (and the manifest entries for the OpenProcessing shaders, whose sources come from `candidates/xhs/glsl`).
 - `tools/transition_demo/` — renders a transition offline with the real composite shader (the README animations).
 - `tools/gen_metal.py` — GLSL → SPIR-V → Metal (glslang + SPIRV-Cross), run by `build.sh`; `generated/` holds its output for builds without those tools.
 - `ShaderMixView.swift`, `Info.plist`, `build.sh`, `configure.sh`.
@@ -33,7 +40,7 @@ Building needs only the Command Line Tools (`xcode-select --install`). With `bre
 
 | key | default | meaning |
 |---|---|---|
-| `shaders` | all eight above | comma-separated keys to play |
+| `shaders` | all thirteen above | comma-separated keys to play |
 | `segmentSeconds` | 20 | how long each shader plays |
 | `transitionSeconds` | 2 | transition length; the code text fades out in the first half and in during the second |
 | `transitions` | `fade,dissolve,radial,clock` | transitions to pick from at random |

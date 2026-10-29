@@ -4,7 +4,8 @@ JSON saved in candidates/src (repository root). The overlay text, shaders/<key>.
 hand-picked verbatim excerpt of each original and is maintained by hand.
 
 Compile sources are the originals verbatim, except where a file already exists in shaders/
-(hand ports: flowingwires, balatroswirl) and colorfulinfinity (one output-identical speed fix).
+(hand ports: flowingwires, balatroswirl, and the OpenProcessing p5.js shaders converted from
+candidates/xhs/glsl with a cover zoom) and colorfulinfinity (one output-identical speed fix).
 """
 import json
 import os
@@ -23,11 +24,28 @@ SHADERS = [
     ('ether', 'MsjSW3', 'Ether', 'nimitz', 'CC BY-NC-SA 3.0', True, {}),
     ('colorfulinfinity', 'WtjyzR', 'Path to the colorful infinity', 'benoitM', 'CC BY-NC-SA 3.0', True, {}),
     ('balatroswirl', None, 'Balatro background', 'LocalThunk · port xxidbr9', 'personal use only', True, {}),
+    ('spiraliris', None, 'Shader_240422-4', 'SamuelYAN', 'CC BY-NC-SA', True, {}),
+    ('membrane', None, 'untitled 2026_0203_3', 'SamuelYAN', 'CC BY-NC-SA', True, {}),
+    ('motes', None, '2026_0131', 'SamuelYAN', 'CC BY-NC-SA', True, {}),
+    ('hiddenline', None, 'GENUARY 2026_0120', 'SamuelYAN', 'CC BY-NC-SA', True, {}),
+    ('apollonian4d', 'N3VXz1', 'Yet Another 4D Apollonian', 'mrange', 'CC0', True, {}),
 ]
+
+# shaders that are not on Shadertoy (or whose Shadertoy page is a port)
+LINKS = {
+    'balatroswirl': 'shadertoy.com/view/XXtBRr',
+    'spiraliris': 'openprocessing.org/sketch/2247937',
+    'membrane': 'openprocessing.org/sketch/2862539',
+    'motes': 'openprocessing.org/sketch/2860882',
+    'hiddenline': 'openprocessing.org/sketch/2851315',
+}
 
 
 def original_code(sid):
-    d = json.load(open(f'{SRC}/{sid}.json'))
+    path = f'{SRC}/{sid}.json'
+    if not os.path.exists(path):
+        path = f'{SRC}/../xhs/src/{sid}.json'
+    d = json.load(open(path))
     return [r for r in d['renderpass'] if r['type'] == 'image'][0]['code']
 
 
@@ -40,7 +58,7 @@ for key, sid, title, author, lic, enabled, channels in SHADERS:
             code = code.replace('o/dot(o,o)', 'o*(1./dot(o,o))')
         if not os.path.exists(comp) or key == 'colorfulinfinity':
             open(comp, 'w').write(code)
-    link = f'shadertoy.com/view/{sid}' if sid else 'shadertoy.com/view/XXtBRr'
+    link = LINKS.get(key) or f'shadertoy.com/view/{sid}'
     manifest.append({'key': key, 'title': title, 'author': author, 'license': lic, 'link': link,
                      'enabledByDefault': enabled, 'channels': channels})
 

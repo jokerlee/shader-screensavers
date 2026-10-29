@@ -72,5 +72,50 @@
     "link": "shadertoy.com/view/XXtBRr",
     "enabledByDefault": true,
     "channels": {}
+  },
+  {
+    "key": "spiraliris",
+    "title": "Shader_240422-4",
+    "author": "SamuelYAN",
+    "license": "CC BY-NC-SA",
+    "link": "openprocessing.org/sketch/2247937",
+    "enabledByDefault": true,
+    "channels": {}
+  },
+  {
+    "key": "membrane",
+    "title": "untitled 2026_0203_3",
+    "author": "SamuelYAN",
+    "license": "CC BY-NC-SA",
+    "link": "openprocessing.org/sketch/2862539",
+    "enabledByDefault": true,
+    "channels": {}
+  },
+  {
+    "key": "motes",
+    "title": "2026_0131",
+    "author": "SamuelYAN",
+    "license": "CC BY-NC-SA",
+    "link": "openprocessing.org/sketch/2860882",
+    "enabledByDefault": true,
+    "channels": {}
+  },
+  {
+    "key": "hiddenline",
+    "title": "GENUARY 2026_0120",
+    "author": "SamuelYAN",
+    "license": "CC BY-NC-SA",
+    "link": "openprocessing.org/sketch/2851315",
+    "enabledByDefault": true,
+    "channels": {}
+  },
+  {
+    "key": "apollonian4d",
+    "title": "Yet Another 4D Apollonian",
+    "author": "mrange",
+    "license": "CC0",
+    "link": "shadertoy.com/view/N3VXz1",
+    "enabledByDefault": true,
+    "channels": {}
   }
 ]
