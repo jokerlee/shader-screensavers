@@ -155,9 +155,9 @@ for(float t=iTime, T=.1*t+p.y, i; i++<50.;
 O = tanh(p.x*--C+S*S);
 ```
 
-### fractal pyramid
+### Fractal Pyramid
 
-![fractal pyramid](docs/screenshots/fractalpyramid.jpg)
+![Fractal Pyramid](docs/screenshots/fractalpyramid.jpg)
 
 - Author: bradjamesgrant
 - Original: https://www.shadertoy.com/view/tsXBzS
@@ -254,9 +254,9 @@ float map(vec3 p){
     cl = cl*l + smoothstep(2.5, .0, rz)*.7*l;
 ```
 
-### Path to the colorful infinity
+### Path to the Colorful Infinity
 
-![Path to the colorful infinity](docs/screenshots/colorfulinfinity.jpg)
+![Path to the Colorful Infinity](docs/screenshots/colorfulinfinity.jpg)
 
 - Author: Benoit Marini (benoitM)
 - Original: https://www.shadertoy.com/view/WtjyzR
@@ -277,9 +277,9 @@ for(float i=0.; i<=1.; i+=1./NUM_LAYERS)
 }
 ```
 
-### Balatro background
+### Balatro Background Shaders
 
-![Balatro background](docs/screenshots/balatroswirl.jpg)
+![Balatro Background Shaders](docs/screenshots/balatroswirl.jpg)
 
 - Author: LocalThunk (the game), ported by xxidbr9
 - Original: https://www.shadertoy.com/view/XXtBRr · https://github.com/xxidbr9/balatro-effect-recreate · https://www.playbalatro.com
@@ -303,10 +303,11 @@ float paint_res = min(2., max(0., length(uv)*(0.035)*contrast_mod));
 
 The last five are the originals behind MasterYeeeee's breakdown videos on Xiaohongshu. Four are SamuelYAN's p5.js fragment shaders on OpenProcessing, converted to Shadertoy's mainImage: coordinates follow p5.js at pixelDensity 2 (Retina); the sketches are composed for an 11:16 portrait canvas, so they are zoomed around the centre to fill a landscape screen (factor set by eye at 16:10, more on wider screens). Each was checked pixel by pixel against the original code rendered in a browser.
 
-### Shader_240422-4
+### Liquid Iridescence
 
-![Shader_240422-4](docs/screenshots/spiraliris.jpg)
+![Liquid Iridescence](docs/screenshots/spiraliris.jpg)
 
+- Original title: Shader_240422-4
 - Author: SamuelYAN (@samuelyan)
 - Original: https://openprocessing.org/sketch/2247937
 - Licence: CC BY-NC-SA
@@ -326,10 +327,11 @@ float s = arrow(uv);
 col *= smoothstep(0.,0.1,2.25-length(uv));
 col = mix(col, vec3(1, .93, .92)*2., smoothstep(0., 3.5, -r));
 ```
-### untitled 2026_0203_3
+### Cell Membrane Light
 
-![untitled 2026_0203_3](docs/screenshots/membrane.jpg)
+![Cell Membrane Light](docs/screenshots/membrane.jpg)
 
+- Original title: untitled 2026_0203_3
 - Author: SamuelYAN (@samuelyan)
 - Original: https://openprocessing.org/sketch/2862539
 - Licence: CC BY-NC-SA
@@ -349,10 +351,11 @@ float mask = smoothstep( 0.03, -0.03, blob(pw, 0.85, life) );
 col /= mask;
 col -= smoothstep(0.2, 0.6, length(pw)) * 0.8;
 ```
-### 2026_0131
+### Sixteen Motes
 
-![2026_0131](docs/screenshots/motes.jpg)
+![Sixteen Motes](docs/screenshots/motes.jpg)
 
+- Original title: 2026_0131
 - Author: SamuelYAN (@samuelyan)
 - Original: https://openprocessing.org/sketch/2860882
 - Licence: CC BY-NC-SA
@@ -374,10 +377,11 @@ vec2 v =
     + 1.6 * alignment       // alignment
     + .4 * separation;     // separation
 ```
-### GENUARY 2026_0120
+### The Hidden Line
 
-![GENUARY 2026_0120](docs/screenshots/hiddenline.jpg)
+![The Hidden Line](docs/screenshots/hiddenline.jpg)
 
+- Original title: GENUARY 2026_0120
 - Author: SamuelYAN (@samuelyan)
 - Original: https://openprocessing.org/sketch/2851315
 - Licence: CC BY-NC-SA

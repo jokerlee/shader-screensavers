@@ -152,9 +152,9 @@ for(float t=iTime, T=.1*t+p.y, i; i++<50.;
 O = tanh(p.x*--C+S*S);
 ```
 
-### fractal pyramid
+### Fractal Pyramid
 
-![fractal pyramid](docs/screenshots/fractalpyramid.jpg)
+![Fractal Pyramid](docs/screenshots/fractalpyramid.jpg)
 
 - 作者：bradjamesgrant
 - 原始链接：https://www.shadertoy.com/view/tsXBzS
@@ -251,9 +251,9 @@ float map(vec3 p){
     cl = cl*l + smoothstep(2.5, .0, rz)*.7*l;
 ```
 
-### Path to the colorful infinity
+### Path to the Colorful Infinity
 
-![Path to the colorful infinity](docs/screenshots/colorfulinfinity.jpg)
+![Path to the Colorful Infinity](docs/screenshots/colorfulinfinity.jpg)
 
 - 作者：Benoit Marini（benoitM）
 - 原始链接：https://www.shadertoy.com/view/WtjyzR
@@ -274,9 +274,9 @@ for(float i=0.; i<=1.; i+=1./NUM_LAYERS)
 }
 ```
 
-### Balatro background
+### Balatro Background Shaders
 
-![Balatro background](docs/screenshots/balatroswirl.jpg)
+![Balatro Background Shaders](docs/screenshots/balatroswirl.jpg)
 
 - 作者：LocalThunk（游戏原作），xxidbr9 移植
 - 原始链接：https://www.shadertoy.com/view/XXtBRr ・ https://github.com/xxidbr9/balatro-effect-recreate ・ https://www.playbalatro.com
@@ -300,10 +300,11 @@ float paint_res = min(2., max(0., length(uv)*(0.035)*contrast_mod));
 
 后 5 个来自小红书博主 MasterYeeeee 的作品解析视频所引用的原作，其中 4 个是 OpenProcessing 上 SamuelYAN 的 p5.js 片元着色器，转成 Shadertoy 的 mainImage 形式：坐标按 p5.js 在 Retina 屏上的 pixelDensity 2 换算；原作为 11:16 竖屏构图，这里围绕中心放大铺满横屏（16:10 下的倍数手调，更宽的屏再按宽度放大），与浏览器 WebGL 渲染的原代码逐像素对比过。
 
-### Shader_240422-4
+### Liquid Iridescence
 
-![Shader_240422-4](docs/screenshots/spiraliris.jpg)
+![Liquid Iridescence](docs/screenshots/spiraliris.jpg)
 
+- 原作名：Shader_240422-4
 - 作者：SamuelYAN（@samuelyan）
 - 原始链接：https://openprocessing.org/sketch/2247937
 - 许可：CC BY-NC-SA
@@ -323,10 +324,11 @@ float s = arrow(uv);
 col *= smoothstep(0.,0.1,2.25-length(uv));
 col = mix(col, vec3(1, .93, .92)*2., smoothstep(0., 3.5, -r));
 ```
-### untitled 2026_0203_3
+### Cell Membrane Light
 
-![untitled 2026_0203_3](docs/screenshots/membrane.jpg)
+![Cell Membrane Light](docs/screenshots/membrane.jpg)
 
+- 原作名：untitled 2026_0203_3
 - 作者：SamuelYAN（@samuelyan）
 - 原始链接：https://openprocessing.org/sketch/2862539
 - 许可：CC BY-NC-SA
@@ -346,10 +348,11 @@ float mask = smoothstep( 0.03, -0.03, blob(pw, 0.85, life) );
 col /= mask;
 col -= smoothstep(0.2, 0.6, length(pw)) * 0.8;
 ```
-### 2026_0131
+### Sixteen Motes
 
-![2026_0131](docs/screenshots/motes.jpg)
+![Sixteen Motes](docs/screenshots/motes.jpg)
 
+- 原作名：2026_0131
 - 作者：SamuelYAN（@samuelyan）
 - 原始链接：https://openprocessing.org/sketch/2860882
 - 许可：CC BY-NC-SA
@@ -371,10 +374,11 @@ vec2 v =
     + 1.6 * alignment       // alignment
     + .4 * separation;     // separation
 ```
-### GENUARY 2026_0120
+### The Hidden Line
 
-![GENUARY 2026_0120](docs/screenshots/hiddenline.jpg)
+![The Hidden Line](docs/screenshots/hiddenline.jpg)
 
+- 原作名：GENUARY 2026_0120
 - 作者：SamuelYAN（@samuelyan）
 - 原始链接：https://openprocessing.org/sketch/2851315
 - 许可：CC BY-NC-SA

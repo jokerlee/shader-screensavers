@@ -9,8 +9,8 @@
   <key>CFBundleName</key><string>Shader Mix</string>
   <key>CFBundleDisplayName</key><string>Shader Mix</string>
   <key>CFBundlePackageType</key><string>BNDL</string>
-  <key>CFBundleShortVersionString</key><string>1.2</string>
-  <key>CFBundleVersion</key><string>3</string>
+  <key>CFBundleShortVersionString</key><string>1.2.1</string>
+  <key>CFBundleVersion</key><string>4</string>
   <key>LSMinimumSystemVersion</key><string>13.0</string>
   <key>NSPrincipalClass</key><string>ShaderMixView</string>
   <key>NSHumanReadableCopyright</key><string>Shadertoy shaders by their authors (see README.md); each shown with its credit and license. Personal use only.</string>
